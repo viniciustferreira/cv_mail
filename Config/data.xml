@@ -1,0 +1,7 @@
+<data>
+	<domain>gmail.com</domain>
+	<user>email_user</user>
+	<password>xxxxxxxxx</password>
+	<smtp>smtp.gmail.com</smtp>
+	<attachment>../Config/curriculum.pdf</attachment>
+</data>

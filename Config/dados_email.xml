@@ -1,0 +1,14 @@
+<empresas>
+	<emails>
+	    <email>xxxxxxx@gmail.com</email>
+        <email>yyyyyyy@gmail.com</email>
+	</emails>
+	<subjects>
+	    <subject>subject of the email 1.</subject>
+        <subject>subject of the email 2.</subject>
+	</subjects>
+	<types>
+	    <type>ruby</type>
+        <type>whatever</type>
+	</types>
+</empresas>
