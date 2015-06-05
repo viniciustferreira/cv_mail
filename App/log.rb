@@ -6,10 +6,14 @@ class Log
 	end
 
 	def create_log_file
-		if(!File.exist?(@name))
-			@file = File.new(@name,"w")	
-			@file << "creation: ".concat(Time.now.strftime("%d/%m/%Y %H:%M"))
-			@file.close
+		begin
+			if(!File.exist?(@name))
+				@file = File.new(@name,"w")	
+				@file << "creation: ".concat(Time.now.strftime("%d/%m/%Y %H:%M"))
+				@file.close
+			end
+		rescue EOFError
+			puts "Erro ao criar log."
 		end
 	end
 

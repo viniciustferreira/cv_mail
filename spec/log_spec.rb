@@ -10,20 +10,22 @@ describe "Log" do
 	describe "creating a log file and write into it" do
 		it "should create a file" do
 			@log.create_log_file
-			expect(File.exist?(@path)).to be_true
+			expect(File.exist?(@path)).to eql(true)
 		end
 
 		it "should write in a log file" do
-			@log.insert_log_file("testing")
+			@log.insert_log_file("testando")
 			file = File.new(@path, "r")
 			ret = false
+			# file.seek(-2, IO::SEEK_END).match(/testando/)
 			file.each_line do  |line| 
-				if line.match("testing")
+				if line.match(/testando/) 
 					ret = true
 				end
 			end
+			
 			file.close	
-			expect(ret).to be_true
+			expect(ret).to eql(true)
 		end
 	end
 end

@@ -1,15 +1,17 @@
 require "nokogiri"
 
 class Xml
-	def initialize(path_list, data, body)
+	def initialize(path_list, data, body,signature)
 		@path = path_list
 		@data_path = data
 		@body_path = body
+		@signature_path = signature
 	end	
 
 	def read_body body_type
 		@reader = Nokogiri::XML(File.open(@body_path))
 		@body = @reader.at_xpath("//body/"+body_type).text
+		@body += self.signature
 	end
 
 	def read_data_file
@@ -22,6 +24,11 @@ class Xml
 		 	:smtp => @reader.at_xpath("//data/smtp").text,
 		 	:attachment => @reader.at_xpath("//data/attachment").text
 		}
+	end
+
+	def signature
+		@signature = Nokogiri::XML(File.open(@signature_path))
+		@signature.at_xpath("signature").text
 	end
 
 	def read_xml
@@ -38,22 +45,22 @@ class Xml
 		return @size
 	end
 
-	def get_type
+	def type
 		return @type.to_a
 	end
-	def get_email
+	def email
 		return @email.to_a
 	end
  	
- 	def get_subject
+ 	def subject
 		return @subject.to_a
 	end
 	
-	def get_body
+	def body
 		return @body
 	end
 
-	def get_data
+	def data
 		return @data
 	end
 end
